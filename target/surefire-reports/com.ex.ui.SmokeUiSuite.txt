@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.ex.ui.SmokeUiSuite
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.93 s <<< FAILURE! - in com.ex.ui.SmokeUiSuite
+com.ex.ui.SmokeUiSuite.firstTest  Time elapsed: 0.009 s  <<< FAILURE!
+java.lang.NullPointerException
+	at com.ex.ui.SmokeUiSuite.firstTest(SmokeUiSuite.java:9)
+
+com.ex.ui.SmokeUiSuite.closeWebDriver  Time elapsed: 0.014 s  <<< FAILURE!
+java.lang.NullPointerException
+

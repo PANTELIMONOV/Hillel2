@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 18.579 s <<< FAILURE! - in TestSuite
+com.ex.SmokeUiSuite.firstTest  Time elapsed: 0.034 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'FVFY20FZHV2H', ip: 'fe80:0:0:0:45f:da38:5c51:7205%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '1.8.0_272'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [null, get {url=http://automationpractice.com/}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 95.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20211218203254, moz:debuggerAddress: localhost:54406, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 80072, moz:profile: /var/folders/9p/9c3xpz7515l..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, platformVersion: 20.6.0, proxy: Proxy(), se:cdp: ws://localhost:54406/devtoo..., se:cdpVersion: 85, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+	at com.ex.SmokeUiSuite.firstTest(SmokeUiSuite.java:8)
+
+com.ex.SmokeUiSuite.firstTest1  Time elapsed: 0.001 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'FVFY20FZHV2H', ip: 'fe80:0:0:0:45f:da38:5c51:7205%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '1.8.0_272'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [null, get {url=http://automationpractice.com/}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 95.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20211218203254, moz:debuggerAddress: localhost:54406, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 80072, moz:profile: /var/folders/9p/9c3xpz7515l..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: MAC, platformName: MAC, platformVersion: 20.6.0, proxy: Proxy(), se:cdp: ws://localhost:54406/devtoo..., se:cdpVersion: 85, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+	at com.ex.SmokeUiSuite.firstTest1(SmokeUiSuite.java:13)
+
