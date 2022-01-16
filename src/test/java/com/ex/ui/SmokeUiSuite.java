@@ -2,42 +2,72 @@ package com.ex.ui;
 
 import com.ex.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 public class SmokeUiSuite extends BaseTest {
-    @Test
-    public void firstTest() {
-        webDriver.get("http://automationpractice.com/");
-        By signIn = By.xpath("//a[@class='login']");
-        webDriver.findElement(signIn).click();
 
-        //TODO generate random email, and check register form is displayed
-        webDriver.findElement(By.xpath("//input[@id='email_create']")).sendKeys("example@email.com");
-        webDriver.findElement(By.xpath("//button[@id='SubmitCreate']")).click();
+    private String url = "http://automationpractice.com/";
 
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    @BeforeMethod
+    protected String getSaltString() {
+        String saltChars = "abcdefghijklmnopqrstuvwxyz1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 10) {
+            int index = (int) (rnd.nextFloat() * saltChars.length());
+            salt.append(saltChars.charAt(index));
         }
+
+        return salt + "@mailinator.com";
     }
+
+    private String email = getSaltString();
+
     @Test
-    public void firstTest1() {
-        webDriver.get("http://automationpractice.com/");
+    public void transitionToAccountCreationForm() {
+        webDriver.get(url);
         By signIn = By.xpath("//a[@class='login']");
         webDriver.findElement(signIn).click();
 
-        //TODO verify that error 'email already exist' is displayed
-        webDriver.findElement(By.xpath("//input[@id='email_create']")).sendKeys("example@email.com");
+        webDriver.findElement(By.xpath("//input[@id='email_create']")).sendKeys(email);
         webDriver.findElement(By.xpath("//button[@id='SubmitCreate']")).click();
 
-
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        String currentUrl = webDriver.getCurrentUrl();
+        String formHeader = webDriver.findElement(By.xpath("//h1[@class='page-heading']")).getText();
+
+        Assert.assertEquals(currentUrl, url + "index.php?controller=authentication&back=my-account#account-creation");
+        Assert.assertEquals(formHeader, "CREATE AN ACCOUNT");
+    }
+
+    @Test
+    public void createAccountWithAlreadyRegisteredEmail() {
+        String registeredEmail = "aa@aa.com";
+        webDriver.get(url + "index.php?controller=authentication&back=my-account#account-creation");
+        webDriver.findElement(By.xpath("//input[@id='email_create']")).sendKeys(registeredEmail);
+        webDriver.findElement(By.xpath("//button[@id='SubmitCreate']")).click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String expectedErrorMessage = "An account using this email address has already been registered. Please enter a " +
+                "valid password or request a new one.";
+        String actualErrorMessage = webDriver.findElement(By.xpath("//div[@class='alert alert-danger']//li")).getText();
+        String currentUrl = webDriver.getCurrentUrl();
+
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+        Assert.assertEquals(currentUrl, url + "index.php?controller=authentication&back=my-account#account-creation");
     }
 }
